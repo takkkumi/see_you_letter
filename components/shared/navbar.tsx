@@ -15,7 +15,7 @@ const Navbar: React.FC = (): JSX.Element => {
             <Menu secondary pointing>
                 <Link href="/" >
                     <Menu.Item active={navpoint === "/"} link>
-                        Home!
+                        Home
             </Menu.Item>
                 </Link>
                 <Link href="/about">
