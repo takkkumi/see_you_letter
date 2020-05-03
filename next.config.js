@@ -10,6 +10,7 @@ module.exports = {
           outputPath: 'static/',
           name: '[name].[ext]',
         },
+
       },
     })
     return config
