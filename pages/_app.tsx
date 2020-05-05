@@ -1,7 +1,7 @@
 import 'semantic-ui-css/semantic.min.css'
 import './styles.css'
 import { createContext, useState, useEffect } from 'react'
-import firebase from "../config/firebaseConfig"
+import firebase from "../.config/firebaseConfig"
 import { User } from '../types/userTypes'
 
 
