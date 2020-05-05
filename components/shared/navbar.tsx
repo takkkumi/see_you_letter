@@ -1,9 +1,8 @@
 import { Menu, Dropdown } from "semantic-ui-react"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useContext, useState, useEffect } from "react"
+import { useContext } from "react"
 import { UserContext } from "../../pages/_app"
-import { japDate } from "../../util/Date"
 import { LoginUser, LogoutUser } from "../../actions/firebaselogin"
 import { storeUserData } from "../../types/userTypes"
 
