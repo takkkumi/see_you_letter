@@ -16,7 +16,7 @@
                     [
                         "run",
                         "deploy",
-                        "helloworld2",
+                        "helloworld3",
                         "--image",
                         "gcr.io/see_you_letter/helloworld",
                         "--region",
