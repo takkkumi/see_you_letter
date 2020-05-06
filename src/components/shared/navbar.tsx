@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from "react"
 import { UserContext } from "../../pages/_app"
-import { LoginUser, LogoutUser } from "../../pages/actions/firebaselogin"
+import { LoginUser, LogoutUser } from "../../actions/firebaselogin"
 import { storeUserData } from "../../types/userTypes"
 
 

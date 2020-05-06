@@ -1,7 +1,7 @@
 import firebase from "firebase/app"
 import "firebase/auth"
 import "firebase/firestore"
-import { storeUserData } from "../../types/userTypes"
+import { storeUserData } from "../types/userTypes"
 const db = firebase.firestore()
 const now = firebase.firestore.FieldValue.serverTimestamp()
 

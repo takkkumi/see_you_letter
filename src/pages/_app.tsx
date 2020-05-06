@@ -8,12 +8,14 @@ import "firebase/auth"
 
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_PUBLIC_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.FIREBASE_DATABASE_URL,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STRAGE_BUCKET,
-
+  apiKey: "AIzaSyCO62xKAzAXIlads1jsxztktt4HgsYavtc",
+  authDomain: "see-you-letter.firebaseapp.com",
+  databaseURL: "https://see-you-letter.firebaseio.com",
+  projectId: "see-you-letter",
+  storageBucket: "see-you-letter.appspot.com",
+  messagingSenderId: "48383318228",
+  appId: "1:48383318228:web:baba75edab6ff382468341",
+  measurementId: "G-BJTSQMJV54"
 }
 !firebase.apps.length
   ? firebase.initializeApp(firebaseConfig)
