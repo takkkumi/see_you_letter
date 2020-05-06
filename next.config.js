@@ -1,18 +1,13 @@
-module.exports = {
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.(png|svg)$/,
-      use: {
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
-          publicPath: '/_next/static/',
-          outputPath: 'static/',
-          name: '[name].[ext]',
-        },
+require('./env.js')
 
-      },
-    })
-    return config
+module.exports = {
+  // Public, build-time env vars.
+  // https://nextjs.org/docs#build-time-configuration
+  env: {
+    FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
+    FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,
+    FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
+    FIREBASE_PUBLIC_API_KEY: process.env.FIREBASE_PUBLIC_API_KEY,
+    FIREBASE_STRAGE_BUCKET: process.env.FIREBASE_STRAGE_BUCKET
   },
 }

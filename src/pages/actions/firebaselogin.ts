@@ -1,7 +1,7 @@
 import firebase from "firebase/app"
 import "firebase/auth"
 import "firebase/firestore"
-
+import { storeUserData } from "../../types/userTypes"
 const db = firebase.firestore()
 const now = firebase.firestore.FieldValue.serverTimestamp()
 
@@ -38,7 +38,7 @@ export const LoginUser = async () => {
         console.log(error)
     }
 }
-export const LogoutUser = async (user: any) => {
+export const LogoutUser = async (user: firebase.User | storeUserData) => {
     try {
         firebase.auth().signOut()
         db.collection("user")

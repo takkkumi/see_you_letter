@@ -10,10 +10,12 @@
     "cuid": "^2.1.8",
     "date-fns": "^2.12.0",
     "date-fns-tz": "^1.0.10",
+    "dotenv": "^8.2.0",
     "firebase": "^7.14.2",
     "next": "^9.1.8-canary.11",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-dropzone": "^11.0.1",
     "react-toastify": "^5.5.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.84.0"

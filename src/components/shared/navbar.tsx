@@ -3,12 +3,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from "react"
 import { UserContext } from "../../pages/_app"
-import { LoginUser, LogoutUser } from "../../actions/firebaselogin"
+import { LoginUser, LogoutUser } from "../../pages/actions/firebaselogin"
 import { storeUserData } from "../../types/userTypes"
 
-type Props = {
-    navpoint: string
-}
+
 
 const Navbar: React.FC = () => {
     const router = useRouter()
@@ -19,15 +17,14 @@ const Navbar: React.FC = () => {
 
     return (
         <>
-
             <Menu secondary pointing>
 
                 <Menu.Menu posotion="left">
-                    {user && <Menu.Item header>{user.name}</Menu.Item>}
+
                     <Link href="/" >
                         <Menu.Item active={navpoint === "/"} link>
-                            Home
-            </Menu.Item>
+                            {user?.name ?? "Home"}
+                        </Menu.Item>
                     </Link>
                     <Link href="/about">
                         <Menu.Item active={navpoint === "/about"} link>
