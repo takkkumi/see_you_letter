@@ -1,4 +1,4 @@
-require('./env.js')
+require("./env.js");
 
 module.exports = {
   // Public, build-time env vars.
@@ -8,6 +8,6 @@ module.exports = {
     FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,
     FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
     FIREBASE_PUBLIC_API_KEY: process.env.FIREBASE_PUBLIC_API_KEY,
-    FIREBASE_STRAGE_BUCKET: process.env.FIREBASE_STRAGE_BUCKET
+    FIREBASE_STRAGE_BUCKET: process.env.FIREBASE_STRAGE_BUCKET,
   },
-}
+};

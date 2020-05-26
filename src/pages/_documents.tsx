@@ -1,26 +1,26 @@
-import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
+import NextDocument, { Html, Head, Main, NextScript } from "next/document";
 
-type Props = {}
+type Props = {};
 
 class Document extends NextDocument<Props> {
-    render() {
-        return (
-            <Html >
-                <Head>
-                    <meta
-                        name="viewport"
-                        content="width=device-width, initial-scale=1, shrink-to-fit=no"
-                    />
-                    {/* <link rel="shortcut icon" href="/favicon.png" key="shortcutIcon" /> */}
-                    {/* <link rel="manifest" href="/manifest.json" /> */}
-                </Head>
-                <body>
-                    <Main />
-                    <NextScript />
-                </body>
-            </Html>
-        )
-    }
+  render() {
+    return (
+      <Html>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
+          {/* <link rel="shortcut icon" href="/favicon.png" key="shortcutIcon" /> */}
+          {/* <link rel="manifest" href="/manifest.json" /> */}
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }
 
-export default Document
+export default Document;
