@@ -6,7 +6,7 @@ import firebase, { auth } from "firebase/app"
 import "firebase/firestore"
 import { format } from "date-fns"
 import ja from "date-fns/locale/ja"
-import { postLetter } from "../actions/postLetter"
+import { postLetter, getLetters } from "../actions/postLetter"
 
 const PostLetter = () => {
 	const user = useContext(UserContext).storeUser.data
@@ -73,11 +73,12 @@ const PostLetter = () => {
 						</Button>
 						<Button
 							onClick={async () => {
-								HandlenestedModalClose()
-								postLetter({
+								await postLetter({
 									userUid: user.uid,
 									text: letter,
 								})
+								HandlenestedModalClose()
+								getLetters(user.uid, new Date())
 							}}>
 							Post
 						</Button>
