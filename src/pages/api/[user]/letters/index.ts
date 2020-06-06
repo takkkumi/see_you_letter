@@ -13,8 +13,7 @@ export default (
 	const token = headers.authorization.split("Bearer ")[1]
 	try {
 		firebase.auth().verifyIdToken(token)
-		console.log(token)
-		user == headers.Uid
+		user == headers.uid
 			? firebase
 					.firestore()
 					.collection("user")
@@ -27,7 +26,10 @@ export default (
 					.catch((error) => {
 						res.json({ error })
 					})
-			: res.json("you are evil")
+			: res.json({
+					message: "your are eveil",
+					user: user,
+			  })
 	} catch (error) {
 		console.error("error")
 	}

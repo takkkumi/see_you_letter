@@ -3,30 +3,9 @@ import "./styles.css"
 import { createContext, useState, useEffect, Dispatch } from "react"
 
 import { User } from "../types/userTypes"
-import firebase from "firebase/app"
-import "firebase/firestore"
-import "firebase/auth"
-import { Dimmer, Segment, Loader } from "semantic-ui-react"
 
-const firebaseConfig = {
-	apiKey: process.env.FIREBASE_PUBLIC_API_KEY,
-	authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-	databaseURL: process.env.FIREBASE_DATABASE_URL,
-	projectId: process.env.FIREBASE_PROJECT_ID,
-	storageBucket: process.env.FIREBASE_STRAGE_BUCKET,
-}
-
-!firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
-try {
-	firebase.firestore().settings({
-		cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED,
-	})
-	firebase.firestore().enablePersistence({
-		synchronizeTabs: true,
-	})
-} catch (error) {
-	console.log(error)
-}
+import { Dimmer, Loader } from "semantic-ui-react"
+import firebase from "../actions/firebaseinit"
 
 export type Functions = {
 	setUser: Dispatch<any>
@@ -34,6 +13,7 @@ export type Functions = {
 	setIsLogin: Dispatch<any>
 	setIsLoader: Dispatch<any>
 }
+
 export const UserContext = createContext({} as User & Functions)
 
 export const MyApp = ({ Component, pageProps }) => {

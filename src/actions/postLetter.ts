@@ -1,15 +1,13 @@
-import firebase from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
+import firebase from "./firebaseinit"
+
 import { letter } from "../types/letter"
 import { format, addDays } from "date-fns"
-import { storeUserData } from "../types/userTypes"
+
 const db = firebase.firestore()
 const now = firebase.firestore.FieldValue.serverTimestamp()
-
+const today = new Date()
+export const dayRef = format(today, "yyyy_MM_dd")
 export const postLetter = async (letter: letter) => {
-	const today = new Date()
-	const dayRef = format(today, "yyyy_MM_dd")
 	const sendDay = format(addDays(today, 7), "yyyy_MM_dd")
 	try {
 		await db

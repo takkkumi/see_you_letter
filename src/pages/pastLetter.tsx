@@ -1,10 +1,13 @@
 import useSWR from "swr"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { UserContext } from "./_app"
 import firebase from "firebase"
+import Layout from "../components/layouts/BaseLayout"
+import { useRouter } from "next/router"
 
 const pastLetter = () => {
 	const auth = useContext(UserContext).storeUser
+	const router = useRouter()
 	const fetcher = async (url: RequestInfo) => {
 		const token = await firebase.auth().currentUser.getIdToken()
 		const res = await fetch(url, {
@@ -17,8 +20,13 @@ const pastLetter = () => {
 		}
 		return data
 	}
-	const { data } = useSWR(() => [`/api/${auth.data.uid}/letters`], fetcher)
+	const { data } = useSWR(() => [`/api/${auth.data.uid}/letters`], fetcher, {
+		dedupingInterval: 600000,
+	})
 	console.log(data)
-	return <></>
+	useEffect(() => {
+		!auth?.data?.uid && router.push("/")
+	}, [])
+	return <Layout></Layout>
 }
 export default pastLetter
