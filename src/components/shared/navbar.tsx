@@ -7,61 +7,63 @@ import { LoginUser, LogoutUser } from "../../actions/firebaselogin"
 import { storeUserData } from "../../types/userTypes"
 
 const Navbar: React.FC = () => {
-	const router = useRouter()
-	const navpoint = router.pathname
-	const auth = useContext(UserContext)
-	const user: storeUserData = auth?.storeUser?.data ?? null
+  const router = useRouter()
+  const navpoint = router.pathname
+  const auth = useContext(UserContext)
+  const user: storeUserData = auth?.storeUser?.data ?? null
 
-	return (
-		<>
-			<Menu secondary pointing>
-				<Link href="/">
-					<Menu.Item active={navpoint === "/"} link>
-						{user?.name ?? "Home"}
-					</Menu.Item>
-				</Link>
-				<Link href="/about">
-					<Menu.Item active={navpoint === "/about"} link>
-						About
-					</Menu.Item>
-				</Link>
-				{auth.isLogin && (
-					<Link href="/pastLetter">
-						<Menu.Item active={navpoint === "/pastLetter"} link>
-							pastLetter
-						</Menu.Item>
-					</Link>
-				)}
+  return (
+    <>
+      <Menu secondary pointing>
+        <Link href="/">
+          <Menu.Item active={navpoint === "/"} link>
+            {user?.name ?? "Home"}
+          </Menu.Item>
+        </Link>
+        <Link href="/about">
+          <Menu.Item active={navpoint === "/about"} link>
+            About
+          </Menu.Item>
+        </Link>
+        {auth.isLogin && (
+          <Link href="/pastLetter">
+            <Menu.Item active={navpoint === "/pastLetter"} link>
+              pastLetter
+            </Menu.Item>
+          </Link>
+        )}
 
-				<Dropdown text="Setting" item>
-					<Dropdown.Menu>
-						{!auth.isLogin ? (
-							<>
-								<Dropdown.Item
-									onClick={async () => {
-										await LoginUser()
-										auth.setIsLogin(true)
-									}}
-									text="Login"
-								/>
-							</>
-						) : (
-							<>
-								<Dropdown.Item
-									onClick={async () => {
-										await LogoutUser(user)
-										auth.setIsLogin(false)
-									}}
-									text="Logout"
-								/>
-								<Dropdown.Item text="Profile" />
-							</>
-						)}
-					</Dropdown.Menu>
-				</Dropdown>
-			</Menu>
-		</>
-	)
+        <Dropdown text="Setting" item>
+          <Dropdown.Menu>
+            {!auth.isLogin ? (
+              <>
+                <Dropdown.Item
+                  onClick={async () => {
+                    await LoginUser()
+                    auth.setIsLogin(true)
+                    router.push("/")
+                  }}
+                  text="Login"
+                />
+              </>
+            ) : (
+              <>
+                <Dropdown.Item
+                  onClick={async () => {
+                    await LogoutUser(user)
+                    auth.setIsLogin(false)
+                    router.push("/")
+                  }}
+                  text="Logout"
+                />
+                <Dropdown.Item text="Profile" />
+              </>
+            )}
+          </Dropdown.Menu>
+        </Dropdown>
+      </Menu>
+    </>
+  )
 }
 
 export default Navbar

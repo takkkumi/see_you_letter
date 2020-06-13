@@ -5,6 +5,7 @@ const db = firebase.firestore()
 const now = firebase.firestore.FieldValue.serverTimestamp()
 
 export const LoginUser = async () => {
+	await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 	const provider = new firebase.auth.GoogleAuthProvider()
 	let Login = await firebase.auth().signInWithPopup(provider)
 	const isNewUser = Login.additionalUserInfo.isNewUser
