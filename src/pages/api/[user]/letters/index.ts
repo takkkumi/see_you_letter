@@ -1,7 +1,5 @@
 import firebase from "../../../../actions/firebase"
-import { format, addDays } from "date-fns"
-import { ja } from "date-fns/locale"
-import { utcToZonedTime } from "date-fns-tz"
+import { addDays } from "date-fns"
 import { japDate } from "../../../../util/Date"
 export default async (
 	req: { query: { user: string }; headers: any },
@@ -29,7 +27,7 @@ export default async (
 	try {
 		firebase.auth().verifyIdToken(token)
 		if (user == headers.uid) {
-			let hiddenLatestData: FirebaseFirestore.DocumentData
+			let hiddenLatestData: FirebaseFirestore.DocumentData = null
 			await firebase
 				.firestore()
 				.collection("user")
@@ -39,24 +37,34 @@ export default async (
 				.orderBy("postTime", "asc")
 				.limit(1)
 				.get()
-				.then((docs) => (hiddenLatestData = docs.docs[0].data()))
-			console.log(hiddenLatestData)
+				.then(
+					(docs) =>
+						(hiddenLatestData = docs.docs?.length
+							? docs.docs[0].data()
+							: null)
+				)
 
-			firebase
+			const queryFront = firebase
 				.firestore()
 				.collection("user")
 				.doc(user)
 				.collection("letters")
 				.orderBy("postTime", "desc")
-				.startAfter(hiddenLatestData.postTime)
-				.limit(5)
-				.get()
-				.then((doc) => {
-					res.json(doc.docs.map((doc) => doc.data()))
-				})
-				.catch((error) => {
-					res.json({ error })
-				})
+			const query = async (query: firebase.firestore.Query) => {
+				await query
+					.limit(1)
+					.get()
+					.then((doc) => {
+						res.json(doc.docs.map((doc) => doc.data()))
+					})
+					.catch((error) => {
+						res.json({ error })
+					})
+			}
+
+			hiddenLatestData
+				? query(queryFront.startAfter(hiddenLatestData.postTime))
+				: query(queryFront)
 		} else {
 			res.json({
 				message: "your are eveil",
