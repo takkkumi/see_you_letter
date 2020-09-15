@@ -7,6 +7,7 @@ import { useRouter } from "next/router"
 import { Card, Container, Header, Button } from "semantic-ui-react"
 import { letter } from "../types/letter"
 import { dateTransFormToJapDate } from "../util/Date"
+import { prependListener } from "process"
 
 const pastLetter = () => {
 	const user = useContext(UserContext).user
@@ -21,7 +22,14 @@ const pastLetter = () => {
 		if (res.status !== 200) {
 			throw new Error(data.message)
 		}
-		return data
+		return data.map((doc: { postTime: any }) => {
+			const newDoc = Object.create(doc)
+			newDoc.postTime = firebase.firestore.Timestamp.fromMillis(
+				doc.postTime._seconds * 1000 +
+					Math.round(doc.postTime._nanoseconds / 1000000)
+			)
+			return newDoc
+		})
 	}
 	const [letters, setLetters] = useState([])
 	const [hasMore, setHasMore] = useState(true)
@@ -50,34 +58,8 @@ const pastLetter = () => {
 	const { data } = useSWR(url, fetcher, { dedupingInterval: 1000 })
 
 	useEffect(() => {
-		const f = async () => {
-			setLetters(data)
-
-			const initPostTime = await firebase
-				.firestore()
-				.collection("user")
-				.doc(user.uid)
-				.collection("letters")
-				.doc(data[0].id)
-				.get()
-				.then((doc) => doc.data())
-			console.log(initPostTime)
-			await firebase
-				.firestore()
-				.collection("user")
-				.doc(user.uid)
-				.collection("letters")
-				.orderBy("postTime", "desc")
-				.startAfter(initPostTime.postTime)
-				.limit(2)
-				.get()
-				.then((docs) => {
-					const docsData = docs.docs.map((doc) => doc.data())
-					setLetters([initPostTime, ...docsData])
-					docs.docs.length < 2 && setHasMore(false)
-				})
-		}
-		user && data && f()
+		setLetters(data)
+		data?.length < 3 && setHasMore(false)
 	}, [data])
 	return (
 		<Layout title="Your Letters">

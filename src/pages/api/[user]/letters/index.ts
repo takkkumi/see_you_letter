@@ -35,7 +35,7 @@ export default async (
 				.collection("letters")
 				.where("postDay", "in", pendingDays)
 				.orderBy("postTime", "asc")
-				.limit(1)
+				.limit(3)
 				.get()
 				.then(
 					(docs) =>
@@ -52,7 +52,7 @@ export default async (
 				.orderBy("postTime", "desc")
 			const query = async (query: firebase.firestore.Query) => {
 				await query
-					.limit(1)
+					.limit(3)
 					.get()
 					.then((doc) => {
 						res.json(doc.docs.map((doc) => doc.data()))
