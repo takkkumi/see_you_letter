@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <Menu secondary pointing>
+      <Menu secondary pointing fixed="top" inverted color="grey">
         <Link href="/">
           <Menu.Item active={navpoint === "/"} link>
             {user?.name ?? "Home"}

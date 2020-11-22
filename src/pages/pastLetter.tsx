@@ -3,11 +3,10 @@ import { useContext, useEffect, useState } from "react"
 import { UserContext } from "./_app"
 import firebase from "firebase"
 import Layout from "../components/layouts/BaseLayout"
-import { useRouter } from "next/router"
 import { Card, Container, Header, Button } from "semantic-ui-react"
 import { letter } from "../types/letter"
 import { dateTransFormToJapDate } from "../util/Date"
-import { prependListener } from "process"
+
 
 const pastLetter = () => {
 	const user = useContext(UserContext).user
