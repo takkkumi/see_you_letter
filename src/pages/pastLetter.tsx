@@ -75,7 +75,8 @@ const pastLetter = () => {
 							<Card.Description
 								content={letters.text}
 								style={{
-									fontFamily: "sans-serif",
+									fontFamily:
+										"'HanziPen SC','Hannotate SC','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'",
 									whiteSpace: "pre-wrap",
 								}}
 							/>

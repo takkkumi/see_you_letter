@@ -24,7 +24,12 @@ const LatestPostLetterCard = () => {
 	return todaysPost ? (
 		<Container text>
 			<Header as="h3">{japDate(new Date(), "MM月dd日")}の手紙</Header>
-			<p style={{ fontFamily: "sans-serif", whiteSpace: "pre-wrap" }}>
+			<p
+				style={{
+					fontFamily:
+						"'HanziPen SC','Hannotate SC','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'",
+					whiteSpace: "pre-wrap",
+				}}>
 				{todaysPost?.text}
 			</p>
 			<Divider />

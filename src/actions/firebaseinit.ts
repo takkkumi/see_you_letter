@@ -2,7 +2,6 @@ import * as firebase from "firebase/app"
 import "firebase/firestore"
 import "firebase/auth"
 
-
 const firebaseConfig = {
 	apiKey: process.env.FIREBASE_PUBLIC_API_KEY,
 	authDomain: process.env.FIREBASE_AUTH_DOMAIN,
