@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
       <Menu secondary pointing fixed="top" inverted color="grey">
         <Link href="/">
           <Menu.Item active={navpoint === "/"} link>
-            {user?.name ?? "Home"}
+            {user?.name ? "Post": "Home"}
           </Menu.Item>
         </Link>
         <Link href="/about">
@@ -61,6 +61,11 @@ const Navbar: React.FC = () => {
             )}
           </Dropdown.Menu>
         </Dropdown>
+        {user &&
+          <Menu.Menu  position="right">
+            <Menu.Item header content={user?.name}/>
+          </Menu.Menu>
+        }
       </Menu>
     </>
   )

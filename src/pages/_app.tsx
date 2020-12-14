@@ -4,7 +4,7 @@ import { createContext, useState, useEffect, Dispatch } from "react"
 
 import { User } from "../types/userTypes"
 
-import { Dimmer, Loader } from "semantic-ui-react"
+import { Container, Dimmer, Loader } from "semantic-ui-react"
 import firebase from "../actions/firebaseinit"
 
 export type Functions = {
@@ -72,7 +72,9 @@ export const MyApp = ({ Component, pageProps }) => {
         setIsLoading,
       }}
     >
+      <Container>
       <Component {...pageProps} />
+      </Container>
       {loading && (
         <Dimmer active>
           <Loader />

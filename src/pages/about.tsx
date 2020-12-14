@@ -1,7 +1,7 @@
 import Layout from "../components/layouts/BaseLayout"
 import { Container, Header } from "semantic-ui-react"
 
-const about = () => {
+const about = () =>{
   return (
     <Layout title="About Page">
       <Container text>

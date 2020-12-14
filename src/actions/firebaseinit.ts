@@ -1,7 +1,7 @@
 import * as firebase from "firebase/app"
 import "firebase/firestore"
 import "firebase/auth"
-import localforage from "localforage"
+
 
 const firebaseConfig = {
 	apiKey: process.env.FIREBASE_PUBLIC_API_KEY,

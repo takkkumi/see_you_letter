@@ -7,7 +7,6 @@ import { Card, Container, Header, Button } from "semantic-ui-react"
 import { letter } from "../types/letter"
 import { dateTransFormToJapDate } from "../util/Date"
 
-
 const pastLetter = () => {
 	const user = useContext(UserContext).user
 	let isLogin = useContext(UserContext).isLogin
@@ -36,6 +35,7 @@ const pastLetter = () => {
 		cursorData: firebase.firestore.DocumentData
 	) => {
 		await firebase
+
 			.firestore()
 			.collection("user")
 			.doc(user.uid)
@@ -54,7 +54,7 @@ const pastLetter = () => {
 	}
 	const url = `/api/${user?.uid}/letters`
 
-	const { data } = useSWR(url, fetcher, { dedupingInterval: 1000 })
+	const { data } = useSWR(url, fetcher, { dedupingInterval: 100000 })
 
 	useEffect(() => {
 		setLetters(data)
@@ -72,7 +72,13 @@ const pastLetter = () => {
 									letters.postDay
 								)}
 							/>
-							<Card.Description content={letters.text} />
+							<Card.Description
+								content={letters.text}
+								style={{
+									fontFamily: "sans-serif",
+									whiteSpace: "pre-wrap",
+								}}
+							/>
 						</Card>
 					))}
 				</Card.Group>
