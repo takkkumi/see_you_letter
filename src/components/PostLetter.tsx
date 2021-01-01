@@ -1,8 +1,7 @@
-import { Form, Container, Button, Icon, Modal } from "semantic-ui-react"
+import { Form, Button, Icon, Modal } from "semantic-ui-react"
 import { useContext, useState } from "react"
 import { UserContext } from "../pages/_app"
 import { postLetter } from "../actions/postLetter"
-import LatestPostLetterCard from "./LatestPostLetterCard"
 
 const PostLetter = () => {
 	const user = useContext(UserContext).storeUser.data
@@ -25,8 +24,7 @@ const PostLetter = () => {
 	}
 
 	return (
-		<Container textAlign="center">
-			<LatestPostLetterCard />
+		<>
 			<Button
 				animated="fade"
 				size="huge"
@@ -81,7 +79,7 @@ const PostLetter = () => {
 					</Modal.Content>
 				</Modal>
 			</Modal>
-		</Container>
+		</>
 	)
 }
 

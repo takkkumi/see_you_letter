@@ -3,7 +3,8 @@ import { japDate } from "../util/Date"
 import firebase from "../actions/firebaseinit"
 import "firebase/firestore"
 import { UserContext } from "../pages/_app"
-import { Card, Container, Divider, Header, Item } from "semantic-ui-react"
+import { Container, Divider, Header } from "semantic-ui-react"
+import PostLetter from "./PostLetter"
 
 const LatestPostLetterCard = () => {
 	const user = useContext(UserContext).storeUser.data
@@ -21,19 +22,26 @@ const LatestPostLetterCard = () => {
 		})
 		return postSnapshotQuery.onSnapshot(() => {})
 	}, [])
-	return todaysPost ? (
-		<Container text>
-			<Header as="h3">{japDate(new Date(), "MM月dd日")}の手紙</Header>
-			<p
-				style={{
-					fontFamily:
-						"'HanziPen SC','Hannotate SC','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'",
-					whiteSpace: "pre-wrap",
-				}}>
-				{todaysPost?.text}
-			</p>
-			<Divider />
+	return (
+		<Container text textAlign="center">
+			{todaysPost && (
+				<>
+					<Header as="h3">
+						{japDate(new Date(), "MM月dd日")}の手紙
+					</Header>
+					<p
+						style={{
+							fontFamily:
+								"'HanziPen SC','Hannotate SC','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'",
+							whiteSpace: "pre-wrap",
+						}}>
+						{todaysPost?.text}
+					</p>
+					<Divider />
+				</>
+			)}
+			<PostLetter />
 		</Container>
-	) : null
+	)
 }
 export default LatestPostLetterCard
